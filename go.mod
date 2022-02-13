@@ -1,4 +1,4 @@
-module picocolors
+module github.com/doiit/picocolors
 
 go 1.17
 
