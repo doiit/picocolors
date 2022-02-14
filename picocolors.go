@@ -22,7 +22,7 @@ func contains(s []string, e string) bool {
 func isColorSupported() bool {
 	noColor := os.Getenv("NO_COLOR") != "" || contains(os.Args, "--no-color")
 	forceColor := os.Getenv("FORCE_COLOR") != "" || os.Getenv("CLICOLOR_FORCE") != "" || contains(os.Args, "--color")
-	terminal := isatty.IsTerminal(os.Stdout.Fd()) && isatty.IsCygwinTerminal(os.Stdout.Fd()) && os.Getenv("TERM") == "dumb"
+	terminal := isatty.IsTerminal(os.Stdout.Fd()) || isatty.IsCygwinTerminal(os.Stdout.Fd()) || os.Getenv("TERM") == "dumb"
 	ci := os.Getenv("CI") != ""
 
 	return !noColor && (forceColor || terminal || ci)
